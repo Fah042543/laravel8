@@ -86,3 +86,7 @@ Route::get("/spider", function () {
     return view("test/spider", compact("spider"));
 });
 
+Route::get("/teacher" , function (){
+	return view("teacher");
+});
+
