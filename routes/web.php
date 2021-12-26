@@ -124,4 +124,3 @@ Route::get("/myprofile/{id}", [ MyProfileController::class , "show" ]);
 Route::get( "/newgallery" , [ MyProfileController::class , "gallery" ] );
 Route::get( "/newgallery/ant" , [ MyProfileController::class , "ant" ] );
 Route::get( "/newgallery/bird" , [ MyProfileController::class , "bird" ] );
-
