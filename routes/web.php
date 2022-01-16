@@ -1,7 +1,10 @@
 <?php
-use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\MyProfileController;
 use App\Http\Controllers\Covid19Controller;
+use App\Http\Controllers\StaffController;
+use App\Http\Controllers\PostController;
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -141,3 +144,5 @@ Route::resource('/covid19', Covid19Controller::class );
 // Route::delete('/covid19/{id}', [ Covid19Controller::class , 'destroy' ]);
 
 //week7
+Route::resource('/staff', StaffController::class );
+Route::resource('post', PostController::class);
