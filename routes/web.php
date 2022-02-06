@@ -85,8 +85,11 @@ Route::get("/spider", function () {
     $spider = "https://icdn5.digitaltrends.com/image/spiderman-far-from-home-poster-2-720x720.jpg";
     return view("test/spider", compact("spider"));
 });
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
 Route::get("/teacher" , function (){
 	return view("teacher");
+});
 });
 
 Route::get("/student" , function (){
@@ -95,14 +98,17 @@ Route::get("/student" , function (){
 Route::get("/theme" , function (){
 	return view("theme");
 });
+
 // Route Template Inheritance
 Route::get("/teacher/inheritance", function () {
     return view("teacher-inheritance");
 });
 
+
 Route::get("/student/inheritance", function () {
     return view("student-inheritance");
 });
+
 // Route Template Component
 Route::get("/teacher/component", function () {
     return view("teacher-component");
