@@ -1,0 +1,27 @@
+{
+    "fields": [{
+            "name": "name",
+            "type": "string"
+        },
+        {
+            "name": "email",
+            "type": "string"
+        },
+        {
+            "name": "email_verified_at",
+            "type": "timestamp"
+        },
+        {
+            "name": "password",
+            "type": "string"
+        },
+        {
+            "name": "remember_token",
+            "type": "string"
+        },
+        {
+            "name": "role",
+            "type": "string"
+        }
+    ]
+}

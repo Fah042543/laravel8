@@ -1,0 +1,27 @@
+{
+    "fields": [{
+            "name": "brand",
+            "type": "string"
+        },
+        {
+            "name": "serie",
+            "type": "string"
+        },
+        {
+            "name": "color",
+            "type": "string"
+        },
+        {
+            "name": "year",
+            "type": "integer"
+        },
+        {
+            "name": "mileage",
+            "type": "integer"
+        },
+        {
+            "name": "user_id",
+            "type": "integer"
+        }
+    ]
+}

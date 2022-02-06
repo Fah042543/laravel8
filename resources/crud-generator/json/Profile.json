@@ -1,0 +1,35 @@
+{
+    "fields": [{
+            "name": "no",
+            "type": "string"
+        },
+        {
+            "name": "type",
+            "type": "string"
+        },
+        {
+            "name": "issue_date",
+            "type": "date"
+        },
+        {
+            "name": "expire_date",
+            "type": "date"
+        },
+        {
+            "name": "name",
+            "type": "string"
+        },
+        {
+            "name": "birth_date",
+            "type": "date"
+        },
+        {
+            "name": "id_no",
+            "type": "string"
+        },
+        {
+            "name": "user_id",
+            "type": "integer"
+        }
+    ]
+}
