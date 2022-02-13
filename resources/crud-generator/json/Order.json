@@ -1,0 +1,40 @@
+{
+    "fields": [{
+            "name": "user_id",
+            "type": "integer"
+        },
+        {
+            "name": "remark",
+            "type": "text"
+        },
+
+        {
+            "name": "total",
+            "type": "float"
+        },
+        {
+            "name": "status",
+            "type": "string"
+        },
+        {
+            "name": "checking_at",
+            "type": "timestamp"
+        },
+        {
+            "name": "paid_at",
+            "type": "timestamp"
+        },
+        {
+            "name": "cancelled_at",
+            "type": "timestamp"
+        },
+        {
+            "name": "completed_at",
+            "type": "timestamp"
+        },
+        {
+            "name": "tracking",
+            "type": "string"
+        }
+    ]
+}

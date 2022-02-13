@@ -1,0 +1,27 @@
+{
+    "fields": [{
+            "name": "order_id",
+            "type": "integer"
+        },
+        {
+            "name": "product_id",
+            "type": "integer"
+        },
+        {
+            "name": "user_id",
+            "type": "integer"
+        },
+        {
+            "name": "quantity",
+            "type": "integer"
+        },
+        {
+            "name": "price",
+            "type": "float"
+        },
+        {
+            "name": "total",
+            "type": "float"
+        }
+    ]
+}

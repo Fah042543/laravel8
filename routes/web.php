@@ -7,7 +7,12 @@ use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;  
 use App\Http\Controllers\UserController;  
-use App\Http\Controllers\VehicleController;  
+use App\Http\Controllers\VehicleController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\OrderProductController;
+use App\Http\Controllers\ProductController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -154,8 +159,23 @@ Route::resource('/covid19', Covid19Controller::class );
 Route::resource('/staff', StaffController::class );
 Route::resource('post', PostController::class);
 
+
+//โค้ดที่ Laravel Breeze ให้มา ????
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__ . '/auth.php';
 //week10
 Route::resource('profile', ProfileController::class);
 Route::resource('user', UserController::class);
 Route::resource('vehicle', VehicleController::class);
 
+//week11
+
+    Route::resource('product', ProductController::class);
+Route::middleware(['auth'])->group(function () {
+    Route::resource('payment', PaymentController::class);
+    Route::resource('order-product', OrderProductController::class);
+    Route::resource('order', OrderController::class);
+});

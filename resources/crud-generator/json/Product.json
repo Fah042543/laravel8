@@ -1,0 +1,27 @@
+{
+    "fields": [{
+            "name": "title",
+            "type": "string"
+        },
+        {
+            "name": "content",
+            "type": "text"
+        },
+        {
+            "name": "price",
+            "type": "float"
+        },
+        {
+            "name": "cost",
+            "type": "float"
+        },
+        {
+            "name": "photo",
+            "type": "file"
+        },
+        {
+            "name": "quantity",
+            "type": "integer"
+        }
+    ]
+}
