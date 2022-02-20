@@ -21,17 +21,22 @@ class OrderProductController extends Controller
         $keyword = $request->get('search');
         $perPage = 25;
 
-        if (!empty($keyword)) {
-            $orderproduct = OrderProduct::where('order_id', 'LIKE', "%$keyword%")
-                ->orWhere('product_id', 'LIKE', "%$keyword%")
-                ->orWhere('user_id', 'LIKE', "%$keyword%")
-                ->orWhere('quantity', 'LIKE', "%$keyword%")
-                ->orWhere('price', 'LIKE', "%$keyword%")
-                ->orWhere('total', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
-        } else {
-            $orderproduct = OrderProduct::latest()->paginate($perPage);
-        }
+        //Query ข้อมูลตะกร้าสินค้าโดยเอาเฉพาะที่ order_id = Null และ user_id ตรงกับเรา
+        $orderproduct = OrderProduct::whereNull('order_id')
+            ->where('user_id', Auth::id() )
+            ->latest()->paginate($perPage); 
+
+        // if (!empty($keyword)) {
+        //     $orderproduct = OrderProduct::where('order_id', 'LIKE', "%$keyword%")
+        //         ->orWhere('product_id', 'LIKE', "%$keyword%")
+        //         ->orWhere('user_id', 'LIKE', "%$keyword%")
+        //         ->orWhere('quantity', 'LIKE', "%$keyword%")
+        //         ->orWhere('price', 'LIKE', "%$keyword%")
+        //         ->orWhere('total', 'LIKE', "%$keyword%")
+        //         ->latest()->paginate($perPage);
+        // } else {
+        //     $orderproduct = OrderProduct::latest()->paginate($perPage);
+        // }
 
         return view('order-product.index', compact('orderproduct'));
     }

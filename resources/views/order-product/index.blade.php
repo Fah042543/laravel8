@@ -27,14 +27,29 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>Order Id</th><th>Product Id</th><th>User Id</th><th>Quantity</th><th>Price</th><th>Total</th><th>Actions</th>
+                                        <th>#</th>
+                                        <th>Order Id</th>
+                                        <th>Product Id</th>
+                                        <th>User Id</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+                                        <th>Total</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($orderproduct as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->order_id }}</td><td>{{ $item->product_id }}</td><td>{{ $item->user_id }}</td><td>{{ $item->quantity }}</td><td>{{ $item->price }}</td><td>{{ $item->total }}</td>
+                                        <td>{{ $item->order_id }}</td>
+                                        <td>
+                                        <div><img src="{{ url('storage/'.$item->product->photo)}}" width="100" /> </div>            
+                                        <div>{{ $item->product->title }}</div>
+                                        </td>
+                                        <td>{{ $item->user->name }}</td>
+                                        <td>{{ $item->quantity }}</td>
+                                        <td>{{ $item->price }}</td>
+                                        <td>{{ $item->total }}</td>
                                         <td>
                                             <a href="{{ url('/order-product/' . $item->id) }}" title="View OrderProduct"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/order-product/' . $item->id . '/edit') }}" title="Edit OrderProduct"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
@@ -51,6 +66,16 @@
                             </table>
                             <div class="pagination-wrapper"> {!! $orderproduct->appends(['search' => Request::get('search')])->render() !!} </div>
                         </div>
+                    
+                            <form method="POST" action="{{ url('/order') }}" accept-charset="UTF-8" class="form-horizontal text-center" enctype="multipart/form-data">
+                                {{ csrf_field() }}
+
+                                <h2>รวมราคาสินค้า {{ number_format($orderproduct->sum('total')) }} บาท</h2>
+
+                                <button class="btn btn-primary" type="submit">
+                                    สั่งสินค้า
+                                </button>    
+                            </form>
 
                     </div>
                 </div>
