@@ -69,7 +69,25 @@
             <i class="fa fa-box"></i> คำสั่งซื้อของฉัน
         </a>
     </li>
-
+@if(Auth::check())
+@if(Auth::user()->role == "admin")
+<li class="nav-item" role="presentation">
+    <a class="nav-link"  href="{{ url('/order-product/reportdaily') }}">
+        <i class="fa fa-file"></i> รายงานรายวัน
+    </a>
+</li>
+<li class="nav-item" role="presentation">
+    <a class="nav-link" href="{{ url('/order-product/reportmonthly') }}">
+        <i class="fa fa-file"></i> รายงานรายเดือน
+    </a>
+</li>
+<li class="nav-item" role="presentation">
+    <a class="nav-link" href="{{ url('/order-product/reportyearly') }}">
+        <i class="fa fa-file"></i> รายงานรายปี
+    </a>
+</li>
+@endif
+@endif 
 
             <!-- Heading -->
             <div class="sidebar-heading">

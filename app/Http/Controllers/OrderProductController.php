@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Models\OrderProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class OrderProductController extends Controller
 {
@@ -131,4 +132,44 @@ class OrderProductController extends Controller
 
         return redirect('order-product')->with('flash_message', 'OrderProduct deleted!');
     }
+
+    public function reportdaily(Request $request)
+    {      
+        $date = $request->get('date');
+        //SELECT order_products.*, orders.completed_at FROM `order_products` INNER JOIN orders ON order_products.order_id = orders.id WHERE DATE(orders.completed_at) = $date AND WHERE orders.status = 'completed'
+        $orderproduct = OrderProduct::join('orders', 'order_products.order_id', '=', 'orders.id')
+            ->select(DB::raw('order_products.*, orders.completed_at'))
+            ->whereDate('orders.completed_at',$date)
+            //->where('orders.status','completed')
+            ->get();       
+        return view('order-product.report-daily', compact('orderproduct'));
+    }  
+
+    public function reportmonthly(Request $request)
+    {      
+        $month = $request->get('month');
+        $year = $request->get('year');
+        //SELECT order_products.*, orders.completed_at FROM `order_products` INNER JOIN orders ON order_products.order_id = orders.id WHERE MONTH(orders.completed_at) = $month AND WHERE YEAR(orders.completed_at) = $year AND WHERE orders.status = 'completed'
+        $orderproduct = OrderProduct::join('orders', 'order_products.order_id', '=', 'orders.id')
+            ->select(DB::raw('order_products.*, orders.completed_at'))
+            ->whereMonth('orders.completed_at',$month)
+            ->whereYear('orders.completed_at',$year)
+            //->where('orders.status','completed')
+            ->get();       
+        return view('order-product.report-monthly', compact('orderproduct'));
+    }     
+
+    public function reportyearly(Request $request)
+   {     
+       $year = $request->get('year');
+       //...
+       $orderproduct = OrderProduct::join('orders', 'order_products.order_id', '=', 'orders.id')
+           ->select(DB::raw('order_products.*, orders.completed_at, AVG(order_products.price) as avg_price, SUM(order_products.quantity) as sum_quantity, SUM(order_products.total) as sum_total'))
+           ->whereYear('orders.completed_at',$year)
+           ->where('orders.status','completed')
+           ->groupByRaw('product_id')
+           ->get();      
+       return view('order-product.report-yearly', compact('orderproduct'));
+   }
+
 }

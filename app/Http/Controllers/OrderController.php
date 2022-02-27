@@ -132,6 +132,15 @@ class OrderController extends Controller
         $requestData = $request->all();
         
         $order = Order::findOrFail($id);
+                switch($requestData['status']){
+            case "paid" : 
+                $requestData['paid_at'] = date("Y-m-d H:i:s");
+                break;
+            case "completed" : 
+                $requestData['completed_at'] = date("Y-m-d H:i:s");
+                break;
+        }
+
         $order->update($requestData);
 
         return redirect('order')->with('flash_message', 'Order updated!');
